@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GalleryExample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <!-- Photo Template -->
         <DataTemplate DataType="{x:Type local:Photo}">
@@ -40,8 +40,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListBox}" >
                         <WrapPanel Margin="5" IsItemsHost="True" Orientation="Horizontal" 
-                       ItemHeight="{Binding ElementName=ZoomSlider, Path='Value'}" 
-                       ItemWidth="{Binding ElementName=ZoomSlider, Path='Value'}" 
+                       ItemHeight="{Binding ElementName=ZoomSlider, Path='Value'}"
+                       ItemWidth="{Binding ElementName=ZoomSlider, Path='Value'}"
                        VerticalAlignment="Top" HorizontalAlignment="Stretch" />
                     </ControlTemplate>
                 </Setter.Value>
@@ -138,9 +138,9 @@
         </Grid.RowDefinitions>
         <!-- Photo Management Canvas -->
         <DockPanel Grid.Column="0" Grid.Row="0" Margin="0,0,0,10">
-            <Button DockPanel.Dock="Right" Width="80">Change</Button>
+            <Button DockPanel.Dock="Right" Width="80" Click="Button_Click">Change</Button>
             <Label DockPanel.Dock="Left" Margin="0,0,10,0">Path:</Label>
-            <TextBox Name="ImageDir" Margin="10,0" />
+            <TextBox Name="ImagesDir" Margin="10,0" />
         </DockPanel>
         <GroupBox Grid.Column="0" Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
@@ -154,5 +154,29 @@
                     />
             </ScrollViewer>
         </GroupBox>
+        <!-- Splitter -->
+        <GridSplitter Grid.Column="1" 
+                      HorizontalAlignment="Left" 
+                      VerticalAlignment="Stretch" 
+                      Width="15" 
+                      Background="Transparent" 
+                      ShowsPreview="True"/>
+        
+        <!-- Right Hand Panel -->
+        <DockPanel Grid.Row="0" Grid.Column="1" 
+                   Grid.RowSpan="2" Margin="15,0,0,0">
+            <Label DockPanel.Dock="Left"></Label>
+            <Slider Name="ZoomSlider"
+                    Margin="10,0,0,0"
+                    Orientation="Horizontal"
+                    Minimum="80"
+                    Maximum="320"
+                    Value="160"
+                    TickFrequency="80"
+                    TickPlacement="BottomRight"
+                    SmallChange="5"
+                    LargeChange="20" />
+        </DockPanel>
+
     </Grid>
 </Window>
